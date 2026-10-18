@@ -1,4 +1,4 @@
-const CACHE = 'dnd-ficha-v5.6'; // <-- Mude esta versão sempre que alterar o código
+const CACHE = 'dnd-ficha-v5.7'; // <-- Mude esta versão sempre que alterar o código
 const PREFIXO = 'dnd-ficha-';   // Este app só mexe nos próprios caches (a outra ficha usa outro prefixo)
 const ESSENCIAIS = [
   // Arquivos Raiz
