@@ -1,4 +1,4 @@
-const CACHE = 'dnd-ficha-v5.1'; // <-- Mude esta versão sempre que alterar o código
+const CACHE = 'dnd-ficha-v5.2'; // <-- Mude esta versão sempre que alterar o código
 const ESSENCIAIS = [
   // Arquivos Raiz
   './', './index.html', './manifest.json', './icon-192.png', './icon-512.png',
@@ -89,13 +89,13 @@ self.addEventListener('activate', e => {
 self.addEventListener('fetch', e => {
   if (e.request.method !== 'GET') return;
   e.respondWith(
-    caches.match(e.request).then(r => {
-      // Se achou no cache, retorna. Se não, busca na rede e salva no cache.
+    // AQUI: o ignoreSearch: true faz ele achar o index.html mesmo com ?app=dnd
+    caches.match(e.request, { ignoreSearch: true }).then(r => {
       return r || fetch(e.request).then(resp => {
         const copy = resp.clone();
         caches.open(CACHE).then(c => c.put(e.request, copy)).catch(() => {});
         return resp;
-      }).catch(() => caches.match('./index.html')); // Fallback offline
+      }).catch(() => caches.match('./index.html'));
     })
   );
 });
