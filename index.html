@@ -7,6 +7,7 @@
   
   <!-- NOVAS TAGS PARA iOS -->
   <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <link rel="apple-touch-icon" href="icon-192.png">
   <!-- FIM DAS NOVAS TAGS -->
@@ -65,8 +66,19 @@
 
   render();
 
-  if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js');
 })();
+</script>
+
+<script>
+// Registra o service worker (offline + instalação).
+// Fica em bloco separado para funcionar mesmo se o script principal der erro.
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('./sw.js').catch(function (err) {
+      console.warn('Service worker não registrado:', err);
+    });
+  });
+}
 </script>
 </body>
 </html>
