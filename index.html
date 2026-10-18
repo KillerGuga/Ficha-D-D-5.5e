@@ -68,7 +68,38 @@
 
 })();
 </script>
+<button id="btnInstalar" style="position: fixed; bottom: 20px; right: 20px; display: none; z-index: 9999; padding: 10px 20px; background: #8b2332; color: white; border: none; border-radius: 8px; font-weight: bold;">
+  Instalar App
+</button>
 
+<script>
+  let deferredPrompt;
+  const btnInstalar = document.getElementById('btnInstalar');
+
+  // O Chrome dispara este evento quando o app está "instalável"
+  window.addEventListener('beforeinstallprompt', (e) => {
+    // Impede o banner automático do Chrome
+    e.preventDefault();
+    // Guarda o evento para usar depois
+    deferredPrompt = e;
+    // Mostra o botão
+    btnInstalar.style.display = 'block';
+  });
+
+  // Quando clicar no botão, dispara o prompt de instalação
+  btnInstalar.addEventListener('click', async () => {
+    if (!deferredPrompt) return;
+    // Esconde o botão
+    btnInstalar.style.display = 'none';
+    // Mostra o prompt nativo de instalação
+    deferredPrompt.prompt();
+    // Aguarda a escolha do usuário
+    const { outcome } = await deferredPrompt.userChoice;
+    console.log(`Usuário escolheu: ${outcome}`);
+    // Limpa o prompt para não ser usado de novo
+    deferredPrompt = null;
+  });
+</script>
 <script>
 // Registra o service worker (offline + instalação).
 // Fica em bloco separado para funcionar mesmo se o script principal der erro.
