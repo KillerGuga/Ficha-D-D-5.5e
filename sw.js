@@ -1,4 +1,4 @@
-const CACHE = 'dnd-ficha-v5'; // <-- Mude esta versão sempre que alterar o código
+const CACHE = 'dnd-ficha-v5.1'; // <-- Mude esta versão sempre que alterar o código
 const ESSENCIAIS = [
   // Arquivos Raiz
   './', './index.html', './manifest.json', './icon-192.png', './icon-512.png',
