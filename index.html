@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#1a1a1a">
+  
+  <!-- NOVAS TAGS PARA iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <!-- FIM DAS NOVAS TAGS -->
+
+  <title>Fichas D&D 5.5e</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="ficha/ficha.css">
+</head>
+<body class="home">
+
+<header class="home-topo">
+  <h1>Minhas Fichas</h1>
+  <button id="btnNova" class="btn-primario">+ Nova Ficha</button>
+</header>
+
+<main id="listaFichas" class="lista-fichas"></main>
+
+<footer class="home-rodape">
+  <small>Offline • Salvo no dispositivo</small>
+</footer>
+
+<script src="ficha/ficha-estado.js"></script>
+<script>
+(function(){
+  const lista = document.getElementById('listaFichas');
+  function render() {
+    const fichas = DND_FICHA.listar();
+    if (!fichas.length) {
+      lista.innerHTML = '<p class="vazio">Nenhuma ficha ainda. Crie a primeira!</p>';
+      return;
+    }
+    lista.innerHTML = fichas.map(f => `
+      <a class="card-ficha" href="ficha/ficha.html?id=${f.id}">
+        <div class="card-retrato">${f.meta.retrato ? `<img src="${f.meta.retrato}">` : '🎲'}</div>
+        <div class="card-info">
+          <strong>${f.meta.nome || 'Sem nome'}</strong>
+          <span>${f.meta.nivel || 1}º • ${f.meta.especieId || '—'}</span>
+          <span>${f.meta.classeId || '—'}</span>
+        </div>
+        <button class="card-del" data-id="${f.id}" title="Excluir">✕</button>
+      </a>
+    `).join('');
+    lista.querySelectorAll('.card-del').forEach(b => b.addEventListener('click', e => {
+      e.preventDefault();
+      if (confirm('Excluir esta ficha?')) {
+        DND_FICHA.excluir(b.dataset.id);
+        render();
+      }
+    }));
+  }
+
+  document.getElementById('btnNova').addEventListener('click', () => {
+    const f = DND_FICHA.criarNova();
+    location.href = `ficha/ficha.html?id=${f.id}`;
+  });
+
+  render();
+
+  if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js');
+})();
+</script>
+</body>
+</html>

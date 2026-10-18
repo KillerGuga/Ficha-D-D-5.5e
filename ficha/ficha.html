@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+  <meta name="theme-color" content="#1a1a1a">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>Ficha</title>
+  <link rel="manifest" href="../manifest.json">
+  <link rel="stylesheet" href="ficha.css">
+</head>
+<body>
+
+<!-- Topbar mínima (só título da aba + FAB menu) -->
+<header class="topbar">
+  <button class="btn-voltar" onclick="location.href='../index.html'">‹</button>
+  <h1 id="tituloAba">Ficha</h1>
+  <div class="spacer"></div>
+</header>
+
+<!-- Conteúdo rolável -->
+<main id="conteudo" class="conteudo"></main>
+
+<!-- FAB de navegação -->
+<button id="fabMenu" class="fab" aria-label="Menu de abas">☰</button>
+
+<!-- Overlay + menu -->
+<div id="overlayMenu" class="overlay-menu"></div>
+<nav id="menuAbas" class="menu-abas"></nav>
+
+<!-- ============ DB — carregar na ordem correta ============ -->
+<script src="../db/classes/classes-base.js"></script>
+<script src="../db/classes/_classe-artifice.js"></script>
+<script src="../db/classes/_classe-barbaro.js"></script>
+<script src="../db/classes/_classe-bardo.js"></script>
+<script src="../db/classes/_classe-bruxo.js"></script>
+<script src="../db/classes/_classe-clerigo.js"></script>
+<script src="../db/classes/_classe-druida.js"></script>
+<script src="../db/classes/_classe-feiticeiro.js"></script>
+<script src="../db/classes/_classe-guardiao.js"></script>
+<script src="../db/classes/_classe-guerreiro.js"></script>
+<script src="../db/classes/_classe-ladino.js"></script>
+<script src="../db/classes/_classe-mago.js"></script>
+<script src="../db/classes/_classe-monge.js"></script>
+<script src="../db/classes/_classe-paladino.js"></script>
+
+<script src="../db/origens/origens-base.js"></script>
+<script src="../db/origens/_especies.js"></script>
+<script src="../db/origens/_antecedentes.js"></script>
+<script src="../db/origens/_talentos-origem.js"></script>
+<script src="../db/origens/_talentos-gerais.js"></script>
+<script src="../db/origens/_talentos-estilo-de-luta.js"></script>
+<script src="../db/origens/_talentos-dadiva-epica.js"></script>
+
+<script src="../db/magias/magias.js"></script>
+<script src="../db/magias/_bloco02.js"></script>
+<script src="../db/magias/_bloco03.js"></script>
+<script src="../db/magias/_bloco04.js"></script>
+<script src="../db/magias/_bloco05.js"></script>
+<script src="../db/magias/_bloco06.js"></script>
+<script src="../db/magias/_bloco07.js"></script>
+<script src="../db/magias/_bloco08.js"></script>
+<script src="../db/magias/_bloco09.js"></script>
+<script src="../db/magias/_bloco10.js"></script>
+
+<script src="../db/itens/itens-equipamento.js"></script>
+<script src="../db/itens/itens-magicos.js"></script>
+
+<script src="../db/subclasses/_subclasse-artifice.js"></script>
+<script src="../db/subclasses/_subclasse-barbaro.js"></script>
+<script src="../db/subclasses/_subclasse-bardo.js"></script>
+<script src="../db/subclasses/_subclasse-bruxo.js"></script>
+<script src="../db/subclasses/_subclasse-clerigo.js"></script>
+<script src="../db/subclasses/_subclasse-druida.js"></script>
+<script src="../db/subclasses/_subclasse-feiticeiro.js"></script>
+<script src="../db/subclasses/_subclasse-guardiao.js"></script>
+<script src="../db/subclasses/_subclasse-guerreiro.js"></script>
+<script src="../db/subclasses/_subclasse-ladino.js"></script>
+<script src="../db/subclasses/_subclasse-mago.js"></script>
+<script src="../db/subclasses/_subclasse-monge.js"></script>
+<script src="../db/subclasses/_subclasse-paladino.js"></script>
+
+<script src="../db/recursos/_invocacoes-bruxo.js"></script>
+<script src="../db/recursos/_metamagia-feiticeiro.js"></script>
+<script src="../db/recursos/_tabela-surto-selvagem.js"></script>
+
+<!-- ============ App da ficha ============ -->
+<script src="ficha-estado.js"></script>
+<script src="ficha-calculo.js"></script>
+<script src="ficha-config.js"></script>
+<script src="ficha-render.js"></script>
+<script src="ficha-app.js"></script>
+<script src="ficha-validar.js"></script>
+
+</body>
+</html>

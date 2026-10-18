@@ -1,0 +1,1153 @@
+/* ============================================================
+   FICHA — estilos completos (mobile-first, dark)
+   ============================================================ */
+:root{
+  --bg:#141414; --surface:#1f1f1f; --surface-2:#262626; --surface-3:#2e2e2e;
+  --border:#3a3a3a; --border-soft:#2a2a2a;
+  --accent:#8b2332; --accent-2:#b83a4c; --accent-soft:rgba(184,58,76,.15);
+  --text:#ececec; --text-dim:#9a9a9a; --text-faint:#666;
+  --ok:#4caf50; --warn:#ffb300; --danger:#e53935;
+  --raio:12px; --raio-sm:8px;
+  --sombra:0 2px 12px rgba(0,0,0,.4);
+  --safe-top: env(safe-area-inset-top);
+  --safe-bottom: env(safe-area-inset-bottom);
+}
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { height:100%; margin:0; }
+body{
+  background:var(--bg); color:var(--text);
+  font:15px/1.4 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  overscroll-behavior-y:contain;
+
+  /* NOVO: layout em coluna para o conteúdo esticar */
+  display:flex;
+  flex-direction:column;
+  min-height:100vh;
+  touch-action:pan-y;
+}
+
+/* ---------- Topbar ---------- */
+.topbar{
+  position:sticky; top:0; z-index:20;
+  display:flex; align-items:center; gap:8px;
+  padding: calc(8px + var(--safe-top)) 12px 8px;
+  background:var(--surface); border-bottom:1px solid var(--border);
+}
+.topbar h1{ font-size:16px; margin:0; flex:1; text-align:center; font-weight:600; letter-spacing:.5px; }
+.btn-voltar{ background:none; border:0; color:var(--text); font-size:26px; padding:0 8px; line-height:1; }
+.spacer{ width:32px; }
+
+/* ---------- Conteúdo ---------- */
+.conteudo{
+  flex:1;
+  padding: 12px 12px calc(96px + var(--safe-bottom));
+  overflow-x:hidden; -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
+}
+
+/* ---------- Cabeçalho (aba Ficha) ---------- */
+.cabecalho{
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:var(--raio); padding:12px; margin-bottom:14px;
+}
+.cab-topo{ display:flex; gap:12px; align-items:flex-start; }
+.cab-retrato{
+  width:64px; height:64px; border-radius:50%;
+  background:var(--surface-2); display:grid; place-items:center;
+  font-size:28px; cursor:pointer; overflow:hidden; flex-shrink:0;
+  border:2px solid var(--border);
+}
+.cab-retrato img{ width:100%; height:100%; object-fit:cover; }
+.cab-info{ flex:1; min-width:0; }
+.inp-nome{
+  width:100%; background:transparent; border:0; color:var(--text);
+  font-size:18px; font-weight:700; padding:0 0 4px;
+  border-bottom:1px solid var(--border);
+}
+.cab-sub{ font-size:12px; color:var(--text-dim); margin-top:6px; }
+.cab-sub span{ color:var(--text); }
+
+.cab-hp{ text-align:right; flex-shrink:0; }
+.hp-lbl{ font-size:10px; color:var(--text-dim); letter-spacing:1px; }
+.hp-val{ display:flex; align-items:center; gap:2px; justify-content:flex-end; }
+.hp-val input{
+  width:48px; font-size:16px; font-weight:700;
+  background:var(--surface-2); border:1px solid var(--border); color:var(--text);
+  border-radius:6px; text-align:center; padding:2px;
+}
+.hp-sep{ color:var(--text-dim); }
+.hp-max{ font-size:14px; color:var(--text-dim); }
+.hp-temp{ font-size:11px; color:var(--text-dim); margin-top:4px; }
+.hp-temp input{
+  width:36px; background:var(--surface-2); border:1px solid var(--border);
+  color:var(--text); border-radius:4px; text-align:center;
+}
+.hp-botoes{ display:flex; gap:4px; margin-top:6px; }
+.hp-botoes button{
+  flex:1; background:var(--surface-3); border:1px solid var(--border); color:var(--text);
+  border-radius:6px; padding:5px 4px; font-size:12px; font-weight:600;
+}
+.hp-botoes button:active{ background:var(--accent); }
+
+/* Nível + XP */
+.cab-nivel-linha{ display:flex; margin-top:14px; }
+.cab-nivel-linha label{
+  display:flex; align-items:center; gap:8px; font-size:12px; color:var(--text-dim);
+  background:var(--surface-2); border:1px solid var(--border);
+  border-radius:8px; padding:6px 10px;
+}
+.inp-nivel{
+  width:56px; background:transparent; border:0; color:var(--text);
+  font-size:16px; font-weight:700; text-align:center;
+}
+
+.cab-xp{ margin-top:10px; }
+.xp-info{
+  display:flex; justify-content:space-between; align-items:baseline;
+  font-size:11px; color:var(--text-dim); margin-bottom:5px;
+}
+.xp-info strong{ color:var(--text); font-size:13px; }
+.xp-prox{ font-size:11px; }
+.xp-barra{
+  height:8px; background:var(--surface-3); border-radius:4px; overflow:hidden;
+  border:1px solid var(--border-soft);
+}
+.xp-fill{
+  height:100%; background:linear-gradient(90deg,var(--accent),var(--accent-2));
+  transition:width .3s ease;
+}
+.xp-add{ display:flex; gap:6px; margin-top:8px; }
+.xp-input{
+  flex:0 0 70px; background:var(--surface-2); border:1px solid var(--border);
+  color:var(--text); border-radius:8px; padding:7px 8px; text-align:center;
+  font-size:14px; min-width:0;
+}
+.xp-btn{
+  flex:1; background:var(--surface-2); border:1px solid var(--border);
+  color:var(--text); border-radius:8px; padding:7px 8px;
+  font-size:12px; font-weight:600;
+}
+.xp-btn:active{ background:var(--surface-3); }
+.xp-add-btn{ color:var(--ok); border-color:rgba(76,175,80,.3); }
+.xp-sub-btn{ color:var(--danger); border-color:rgba(229,57,53,.3); }
+
+.cab-stats{ display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin-top:14px; }
+.stat-mini{ background:var(--surface-2); border-radius:8px; padding:6px; text-align:center; }
+.stat-mini .rot{ display:block; font-size:9px; color:var(--text-dim); letter-spacing:.5px; }
+.stat-mini strong{ font-size:16px; }
+
+/* Dropdowns */
+.dropdowns{ display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:14px; }
+.dropdowns label{
+  display:flex; flex-direction:column; font-size:11px; color:var(--text-dim); gap:4px;
+}
+.dropdowns select, .dropdowns input{
+  background:var(--surface-2); border:1px solid var(--border); color:var(--text);
+  border-radius:8px; padding:8px; font-size:14px;
+  width:100%; appearance:none; -webkit-appearance:none;
+  background-image:
+    linear-gradient(45deg, transparent 50%, var(--text-dim) 50%),
+    linear-gradient(135deg, var(--text-dim) 50%, transparent 50%);
+  background-position:
+    calc(100% - 16px) 50%,
+    calc(100% - 11px) 50%;
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+  padding-right:28px;
+}
+.dropdowns input{
+  background-image:none; padding-right:8px;
+}
+.dropdowns select:disabled{
+  opacity:.5; cursor:not-allowed;
+}
+.label-disabled{ opacity:.7; }
+.aviso-nivel{
+  background:var(--surface-2); border:1px dashed var(--border);
+  color:var(--text-dim); border-radius:8px; padding:8px;
+  font-size:12px; font-style:italic;
+}
+
+/* ---------- Painel de bônus do antecedente ---------- */
+.atr-painel{
+  margin-top:14px; padding:12px;
+  background:var(--surface-2); border:1px solid var(--border);
+  border-radius:var(--raio);
+  border-left:3px solid var(--accent);
+}
+.atr-painel.completo{ border-left-color:var(--ok); }
+.atr-painel-topo{ display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; }
+.atr-painel-topo h3{ font-size:12px; margin:0; color:var(--text-dim); text-transform:uppercase; letter-spacing:1px; }
+.atr-painel-topo .check{ color:var(--ok); font-size:16px; }
+.atr-painel-topo .pendente{ color:var(--warn); font-size:10px; letter-spacing:1px; text-transform:uppercase; }
+
+.atr-modo{ display:flex; gap:6px; margin-bottom:10px; }
+.atr-modo button{
+  flex:1; background:var(--surface); border:1px solid var(--border);
+  color:var(--text-dim); border-radius:8px; padding:8px;
+  font-size:12px; font-weight:600;
+}
+.atr-modo button.ativo{ background:var(--accent); color:#fff; border-color:var(--accent); }
+
+.atr-painel-opcoes{ display:grid; grid-template-columns:repeat(3,1fr); gap:6px; margin-bottom:8px; }
+.chip-atr{
+  background:var(--surface); border:1px solid var(--border);
+  color:var(--text); border-radius:8px; padding:8px 4px;
+  display:flex; flex-direction:column; align-items:center; gap:2px;
+  font-size:12px;
+}
+.chip-atr.ativo{ background:var(--accent-soft); border-color:var(--accent-2); }
+.chip-atr .atr-abrev{ font-size:10px; color:var(--text-dim); letter-spacing:1px; }
+.chip-atr.ativo .atr-abrev{ color:var(--accent-2); }
+.chip-atr .atr-valor-bonus{ font-size:16px; font-weight:700; }
+.chip-atr.ativo .atr-valor-bonus{ color:var(--accent-2); }
+.atr-hint{ font-size:10px; color:var(--text-faint); display:block; }
+
+/* ---------- Blocos genéricos ---------- */
+.bloco{ margin-top:16px; }
+.bloco h2{
+  font-size:12px; letter-spacing:1.5px; color:var(--text-dim);
+  text-transform:uppercase; margin:0 0 8px; font-weight:600;
+}
+.bloco h2 small{ font-size:10px; text-transform:none; letter-spacing:0; color:var(--text-faint); }
+.bloco-topo{ display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; }
+.bloco-topo h2{ margin:0; }
+.hint{ font-size:11px; color:var(--text-faint); margin:0 0 8px; }
+
+/* ---------- Atributos ---------- */
+.grade-atributos{ display:grid; grid-template-columns:repeat(3,1fr); gap:8px; }
+.card-atr{
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:var(--raio); padding:8px; text-align:center; position:relative;
+}
+.atr-nome{ font-size:9px; color:var(--text-dim); letter-spacing:1px; display:block; }
+.atr-valor{
+  width:100%; background:transparent; border:0; color:var(--text);
+  font-size:22px; font-weight:700; text-align:center; padding:0;
+}
+.atr-mod{
+  display:inline-block; margin-top:2px; padding:2px 10px;
+  background:var(--surface-3); border-radius:999px; font-size:12px; font-weight:600;
+}
+.atr-bonus-tag{
+  display:block; margin-top:4px; font-size:9px;
+  color:var(--accent-2); letter-spacing:.3px;
+}
+
+/* ---------- Salvaguardas ---------- */
+.lista-salvaguardas{ display:grid; grid-template-columns:1fr 1fr; gap:6px; }
+.row-salv{
+  display:flex; align-items:center; gap:6px; padding:8px 10px;
+  background:var(--surface); border:1px solid var(--border); border-radius:8px;
+}
+.row-salv.prof{ border-color:var(--accent); }
+.row-salv.auto{ background:linear-gradient(90deg,var(--accent-soft),transparent); }
+.row-salv .dot{ font-size:14px; color:var(--text-dim); cursor:pointer; }
+.row-salv.prof .dot{ color:var(--accent-2); }
+.atr-abrev{ font-size:10px; color:var(--text-dim); width:26px; letter-spacing:.5px; }
+.salv-nome{ flex:1; font-size:12px; }
+.bonus{ font-weight:600; }
+
+/* ---------- Perícias ---------- */
+.lista-pericias{ display:flex; flex-direction:column; gap:4px; }
+.row-pericia{
+  display:flex; align-items:center; gap:8px; padding:8px 10px;
+  background:var(--surface); border:1px solid var(--border); border-radius:8px;
+}
+.row-pericia.prof{ border-color:var(--accent); }
+.row-pericia.esp{ border-color:var(--accent-2); background:linear-gradient(90deg,var(--accent-soft),transparent); }
+.row-pericia .dot{ font-size:14px; color:var(--text-dim); cursor:pointer; width:18px; text-align:center; }
+.row-pericia.prof .dot{ color:var(--accent-2); }
+.row-pericia .per-nome{ flex:1; }
+
+/* ---------- Passivas ---------- */
+.grade-passivas{ display:grid; grid-template-columns:repeat(3,1fr); gap:8px; }
+.grade-passivas > div{
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:8px; padding:8px; text-align:center;
+}
+.grade-passivas span{ display:block; font-size:10px; color:var(--text-dim); }
+.grade-passivas strong{ font-size:18px; }
+
+/* ---------- Combate ---------- */
+.card-ataque{
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:var(--raio); padding:10px; margin-bottom:8px;
+}
+.atk-topo{ display:flex; justify-content:space-between; align-items:center; margin-bottom:6px; }
+.atk-linha{ display:flex; flex-wrap:wrap; gap:6px; }
+.tag{
+  background:var(--surface-3); border-radius:6px; padding:3px 8px;
+  font-size:11px; color:var(--text-dim);
+}
+.tag-atk{ color:var(--accent-2); font-weight:600; }
+.tag-dano{ color:var(--warn); font-weight:600; }
+.atk-notas{ font-size:12px; color:var(--text-dim); margin-top:6px; font-style:italic; }
+.btn-del, .btn-del-item, .btn-del-sint{
+  background:none; border:0; color:var(--text-dim); font-size:16px; padding:4px 8px;
+}
+.btn-sugestao{
+  display:block; width:100%; text-align:left; background:var(--surface);
+  border:1px solid var(--border); color:var(--text); border-radius:8px;
+  padding:10px 12px; margin-bottom:6px; font-size:14px;
+}
+.btn-sugestao:active{ background:var(--surface-2); }
+.btn-mini{
+  background:var(--accent); color:#fff; border:0; border-radius:8px;
+  padding:6px 12px; font-size:12px; font-weight:600;
+}
+.btn-add{
+  width:100%; background:var(--surface); border:1px dashed var(--border);
+  color:var(--text); border-radius:8px; padding:10px; margin-top:8px; font-size:13px;
+}
+
+/* ---------- Magias ---------- */
+.mag-topo{ display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:12px; }
+.mag-topo > div{
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:8px; padding:8px; text-align:center;
+}
+.mag-topo span{ display:block; font-size:10px; color:var(--text-dim); letter-spacing:1px; }
+.mag-topo strong{ font-size:20px; }
+
+.busca-magias, .busca-inv{
+  width:100%; background:var(--surface); border:1px solid var(--border);
+  color:var(--text); border-radius:8px; padding:10px 12px;
+  margin-bottom:8px; font-size:14px;
+}
+.chips-circulos, .chips-inv{ display:flex; flex-wrap:wrap; gap:6px; margin-bottom:12px; }
+.chip{
+  background:var(--surface-2); border:1px solid var(--border); color:var(--text-dim);
+  border-radius:999px; padding:5px 12px; font-size:12px;
+}
+.chip.ativo{ background:var(--accent); color:#fff; border-color:var(--accent); }
+
+.espacos-magia{ display:flex; flex-wrap:wrap; gap:6px; margin-bottom:14px; }
+.slot-row{
+  display:flex; align-items:center; gap:4px; background:var(--surface);
+  border:1px solid var(--border); border-radius:8px; padding:4px 8px;
+}
+.slot-cir{ font-size:11px; color:var(--text-dim); margin-right:2px; }
+.slot-row button{
+  background:var(--surface-3); border:1px solid var(--border); color:var(--text);
+  width:24px; height:24px; border-radius:5px; line-height:1; padding:0; font-size:14px;
+}
+.slot-row button:active{ background:var(--accent); }
+.slot-val{ font-weight:600; min-width:40px; text-align:center; font-size:13px; }
+
+.titulo-circulo{
+  font-size:12px; color:var(--accent-2); margin:16px 0 8px;
+  letter-spacing:1px; text-transform:uppercase;
+}
+.lista-magias{ display:flex; flex-direction:column; gap:6px; }
+.magia-item{
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:8px; padding:10px 12px; cursor:pointer;
+  transition:border-color .15s;
+}
+.magia-item.aberto{ border-color:var(--accent-2); }
+.magia-cab{ position:relative; }
+.magia-cab strong{ display:block; font-size:14px; padding-right:60px; }
+.magia-meta{ font-size:11px; color:var(--text-dim); display:block; margin-top:2px; }
+.magia-escola{
+  position:absolute; top:0; right:0;
+  font-size:9px; color:var(--accent-2); letter-spacing:1px; text-transform:uppercase;
+}
+.magia-det{
+  display:none; margin-top:10px; padding-top:10px;
+  border-top:1px solid var(--border); font-size:13px; line-height:1.5;
+}
+.magia-item.aberto .magia-det{ display:block; }
+.magia-det p{ margin:0 0 8px; }
+.magia-up{ color:var(--text-dim); font-style:italic; }
+
+/* ---------- Inventário ---------- */
+.inv-topo{ display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; }
+.peso{ font-size:12px; color:var(--text-dim); }
+.moedas{ display:grid; grid-template-columns:repeat(5,1fr); gap:4px; margin-bottom:12px; }
+.moedas label{
+  display:flex; flex-direction:column; font-size:10px;
+  color:var(--text-dim); gap:2px; letter-spacing:1px;
+}
+.moedas input{
+  width:100%; background:var(--surface); border:1px solid var(--border);
+  color:var(--text); border-radius:6px; padding:6px 4px;
+  text-align:center; font-size:12px;
+}
+
+.lista-itens{ display:flex; flex-direction:column; gap:4px; margin-top:8px; }
+.item-row{
+  display:grid; grid-template-columns:auto 1fr auto auto auto; gap:8px;
+  align-items:center; background:var(--surface); border:1px solid var(--border);
+  border-radius:8px; padding:8px 10px;
+}
+.item-row.equip{ border-color:var(--accent); background:linear-gradient(90deg,var(--accent-soft),transparent); }
+.item-check input{ accent-color:var(--accent-2); }
+.item-info strong{ display:block; font-size:14px; }
+.item-info small{ font-size:11px; color:var(--text-dim); }
+.item-qtd{ font-size:12px; color:var(--text-dim); display:flex; align-items:center; gap:2px; }
+.item-qtd input{
+  width:40px; background:var(--surface-2); border:1px solid var(--border);
+  color:var(--text); border-radius:4px; text-align:center; padding:2px;
+}
+.item-peso{ font-size:12px; color:var(--text-dim); white-space:nowrap; }
+
+.lista-sint{ display:flex; flex-direction:column; gap:6px; }
+.sint-slot{
+  display:flex; align-items:center; gap:10px; padding:10px 12px;
+  background:var(--surface); border:1px dashed var(--border); border-radius:8px;
+}
+.slot-num{
+  width:26px; height:26px; border-radius:50%; background:var(--surface-3);
+  display:grid; place-items:center; font-size:11px; color:var(--text-dim);
+  flex-shrink:0;
+}
+.sint-nome{ flex:1; font-size:13px; }
+.slot-vazio{ color:var(--text-faint); font-style:italic; font-size:13px; }
+
+/* ---------- Características ---------- */
+.carac-item{
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:8px; padding:10px 12px; margin-bottom:6px;
+}
+.carac-item summary{
+  cursor:pointer; list-style:none; display:flex;
+  justify-content:space-between; align-items:center; gap:8px;
+}
+.carac-item summary::-webkit-details-marker{ display:none; }
+.carac-item summary::after{
+  content:'▾'; color:var(--text-dim); font-size:12px; transition:transform .2s;
+}
+.carac-item[open] summary::after{ transform:rotate(180deg); }
+.tag-nv{
+  font-size:10px; color:var(--accent-2); background:var(--surface-3);
+  padding:2px 8px; border-radius:999px; white-space:nowrap;
+}
+.carac-item p{ margin:10px 0 0; font-size:13px; color:var(--text-dim); line-height:1.5; }
+
+/* ---------- Antecedente / Notas ---------- */
+.fonte{ font-size:11px; color:var(--text-faint); margin:0 0 8px; }
+.nota{ display:block; margin-bottom:10px; }
+.nota span{
+  display:block; font-size:11px; color:var(--text-dim);
+  margin-bottom:4px; letter-spacing:1px; text-transform:uppercase;
+}
+.nota textarea{
+  width:100%; background:var(--surface); border:1px solid var(--border);
+  color:var(--text); border-radius:8px; padding:10px;
+  font:inherit; resize:vertical; min-height:80px;
+}
+
+/* ---------- FAB + menu lateral ---------- */
+.fab{
+  position:fixed; right:16px; bottom: calc(16px + var(--safe-bottom));
+  width:56px; height:56px; border-radius:50%;
+  background:var(--accent); color:#fff; border:0; font-size:22px;
+  box-shadow:var(--sombra); z-index:30;
+  display:grid; place-items:center;
+}
+.fab:active{ background:var(--accent-2); }
+
+.overlay-menu{
+  position:fixed; inset:0; background:rgba(0,0,0,.5); opacity:0;
+  pointer-events:none; transition:opacity .2s; z-index:40;
+}
+body.menu-aberto .overlay-menu{ opacity:1; pointer-events:auto; }
+
+.menu-abas{
+  position:fixed; right:0; top:0; bottom:0;
+  width:min(80vw,320px); background:var(--surface);
+  border-left:1px solid var(--border);
+  padding: calc(20px + var(--safe-top)) 12px 12px;
+  transform:translateX(100%); transition:transform .25s ease;
+  z-index:50; display:flex; flex-direction:column; gap:4px;
+  overflow-y:auto;
+}
+body.menu-aberto .menu-abas{ transform:translateX(0); }
+.menu-abas button{
+  text-align:left; background:transparent; border:0; color:var(--text);
+  font-size:15px; padding:12px 14px; border-radius:8px;
+  font-weight:500;
+}
+.menu-abas button.ativo{ background:var(--accent); color:#fff; }
+.menu-abas button:active{ background:var(--surface-2); }
+
+/* ---------- Home (index.html) ---------- */
+body.home{ display:flex; flex-direction:column; min-height:100%; }
+.home-topo{
+  display:flex; justify-content:space-between; align-items:center;
+  padding: calc(16px + var(--safe-top)) 16px 16px;
+  border-bottom:1px solid var(--border);
+}
+.home-topo h1{ font-size:20px; margin:0; }
+.btn-primario{
+  background:var(--accent); color:#fff; border:0; border-radius:8px;
+  padding:10px 16px; font-weight:600; font-size:14px;
+}
+.lista-fichas{ padding:16px 12px; display:flex; flex-direction:column; gap:10px; flex:1; }
+.card-ficha{
+  display:flex; align-items:center; gap:12px; padding:12px;
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:var(--raio); color:var(--text); text-decoration:none;
+}
+.card-retrato{
+  width:48px; height:48px; border-radius:50%; background:var(--surface-2);
+  display:grid; place-items:center; font-size:22px; overflow:hidden; flex-shrink:0;
+}
+.card-retrato img{ width:100%; height:100%; object-fit:cover; }
+.card-info{ flex:1; display:flex; flex-direction:column; min-width:0; }
+.card-info strong{ font-size:15px; }
+.card-info span{ font-size:12px; color:var(--text-dim); }
+.card-del{ background:none; border:0; color:var(--text-dim); font-size:18px; padding:8px; }
+.vazio{ text-align:center; color:var(--text-dim); padding:24px 12px; font-style:italic; }
+.home-rodape{ text-align:center; padding:24px; color:var(--text-faint); font-size:11px; }
+
+/* ---------- Ajustes responsivos ---------- */
+@media (max-width:360px){
+  .grade-atributos{ grid-template-columns:repeat(3,1fr); }
+  .atr-valor{ font-size:20px; }
+  .cab-hp .hp-val input{ width:40px; }
+}
+
+/* ---------- Painel genérico de escolhas ---------- */
+.painel-escolhas{
+  margin-top:14px; padding:12px;
+  background:var(--surface-2); border:1px solid var(--border);
+  border-radius:var(--raio); border-left:3px solid var(--accent);
+}
+.painel-escolhas.completo{ border-left-color:var(--ok); }
+.painel-escolhas-topo{
+  display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;
+}
+.painel-escolhas-topo h3{
+  font-size:12px; margin:0; color:var(--text-dim);
+  text-transform:uppercase; letter-spacing:1px;
+}
+.painel-escolhas-topo .check{ color:var(--ok); font-size:16px; }
+.painel-escolhas-topo .pendente{ color:var(--warn); font-size:10px; text-transform:uppercase; letter-spacing:1px; }
+.painel-escolhas .btn-confirmar{ margin-top:14px; }
+
+.resumo-escolhas{
+  display:flex; flex-wrap:wrap; gap:8px; margin-top:6px;
+}
+.resumo-escolhas .tag-resumo{
+  background:var(--surface-3); border-radius:999px; padding:4px 12px;
+  font-size:12px; font-weight:600; color:var(--accent-2);
+}
+
+/* Botão OK grande */
+.btn-confirmar{
+  width:100%; margin-top:12px; padding:12px;
+  background:var(--ok); color:#fff; border:0; border-radius:8px;
+  font-size:14px; font-weight:700; letter-spacing:.5px;
+}
+.btn-confirmar:disabled{ background:var(--surface-3); color:var(--text-faint); }
+.btn-editar{
+  background:transparent; border:1px solid var(--border); color:var(--text-dim);
+  border-radius:6px; padding:4px 12px; font-size:11px;
+}
+
+/* Espécie - sub-escolha em lista vertical (mais legível) */
+.lista-subescolhas{ display:flex; flex-direction:column; gap:6px; }
+.opcao-subescolha{
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:8px; padding:10px 12px; text-align:left;
+  color:var(--text); font-size:13px;
+}
+.opcao-subescolha.ativa{ background:var(--accent-soft); border-color:var(--accent-2); }
+.opcao-subescolha strong{ display:block; font-size:14px; margin-bottom:2px; }
+.opcao-subescolha small{ color:var(--text-dim); font-size:11px; line-height:1.35; display:block; }
+
+/* Perícia - chips com busca */
+.grade-pericias-escolha{
+  display:grid; grid-template-columns:1fr 1fr; gap:6px; max-height:280px;
+  overflow-y:auto; padding-right:4px; margin-top:8px;
+}
+.chip-pericia{
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:6px; padding:6px 8px; color:var(--text); font-size:12px;
+  text-align:left;
+}
+.chip-pericia.ativa{ background:var(--accent-soft); border-color:var(--accent-2); color:var(--accent-2); }
+
+/* Tag de origem nas perícias */
+.tag-origem{
+  font-size:9px; padding:1px 6px; border-radius:999px;
+  background:var(--accent-soft); color:var(--accent-2); margin-left:6px;
+  text-transform:uppercase; letter-spacing:.5px;
+}
+.tag-origem.esp{ background:rgba(76,175,80,.15); color:var(--ok); }
+.tag-origem.cla{ background:rgba(255,179,0,.15); color:var(--warn); }
+/* Select de texto livre (ferramenta) */
+.select-livre{
+  width:100%; background:var(--surface); border:1px solid var(--border);
+  color:var(--text); border-radius:8px; padding:10px; font-size:13px;
+  margin-top:6px;
+}
+
+/* ---------- Magias de Espécie ---------- */
+.magia-esp{
+  border-left: 3px solid var(--warn);
+}
+.magia-esp.gasta{
+  opacity: .55;
+}
+.magia-esp.gasta strong{
+  text-decoration: line-through;
+  text-decoration-color: var(--warn);
+}
+.magia-esp .magia-escola{
+  color: var(--warn);
+}
+.badge-livre{
+  display:inline-block;
+  background: rgba(255,179,0,.15);
+  color: var(--warn);
+  border-radius: 6px;
+  padding: 1px 6px;
+  font-size: 10px;
+  margin-left: 4px;
+}
+.magia-nota{
+  color: var(--text-dim);
+  font-style: italic;
+  font-size: 12px;
+}
+.btn-usar-livre{
+  margin-top: 10px;
+  width: 100%;
+  background: rgba(255,179,0,.12);
+  border: 1px solid rgba(255,179,0,.35);
+  color: var(--warn);
+  border-radius: 8px;
+  padding: 8px 10px;
+  font-size: 12px;
+  font-weight: 600;
+}
+.btn-usar-livre.usada{
+  background: var(--surface-2);
+  border-color: var(--border);
+  color: var(--text-dim);
+}
+.chip-esp{
+  background: rgba(255,179,0,.15) !important;
+  color: var(--warn) !important;
+  border-color: rgba(255,179,0,.35) !important;
+}
+.chip-esp.ativo{
+  background: var(--warn) !important;
+  color: #1a1a1a !important;
+}
+
+/* ---------- Multiclasses ---------- */
+.multiclasse-secao{
+  margin-top:16px;
+  padding-top:16px;
+  border-top:1px solid var(--border);
+}
+.multiclasse-titulo{
+  font-size:12px;
+  color:var(--text-dim);
+  text-transform:uppercase;
+  letter-spacing:1.5px;
+  margin:0 0 10px;
+  font-weight:600;
+}
+.multiclasse-card{
+  background:var(--surface-2);
+  border:1px solid var(--border);
+  border-radius:var(--raio);
+  padding:12px;
+  margin-bottom:10px;
+  border-left:3px solid var(--accent-2);
+}
+.multiclasse-topo{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:10px;
+}
+.multiclasse-num{
+  background:var(--accent);
+  color:#fff;
+  border-radius:999px;
+  padding:3px 12px;
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.5px;
+}
+.btn-del-mc{
+  background:transparent;
+  border:0;
+  color:var(--text-dim);
+  font-size:18px;
+  padding:4px 8px;
+  line-height:1;
+}
+.multiclasse-card label{
+  display:flex;
+  flex-direction:column;
+  font-size:11px;
+  color:var(--text-dim);
+  gap:4px;
+  margin-bottom:8px;
+}
+.multiclasse-card label:last-child{ margin-bottom:0; }
+.multiclasse-card select,
+.multiclasse-card input{
+  background:var(--surface);
+  border:1px solid var(--border);
+  color:var(--text);
+  border-radius:8px;
+  padding:8px;
+  font-size:14px;
+  width:100%;
+}
+.btn-add-mc{
+  width:100%;
+  background:var(--surface);
+  border:1px dashed var(--accent);
+  color:var(--accent-2);
+  border-radius:8px;
+  padding:12px;
+  font-size:13px;
+  font-weight:600;
+  cursor:pointer;
+  transition:background .15s;
+}
+.btn-add-mc:active{ background:var(--accent-soft); }
+
+/* Nível da classe principal próximo à label da subclasse */
+.tag-nv-classe{
+  display:inline-block;
+  font-size:9px;
+  padding:1px 6px;
+  border-radius:999px;
+  background:var(--surface-3);
+  color:var(--text-dim);
+  margin-left:6px;
+  letter-spacing:.5px;
+}
+
+/* Tag "Total: Nv. X" no cabeçalho, quando há multiclasse */
+.tag-total{
+  color:var(--accent-2);
+  font-weight:600;
+}
+
+/* ---------- Proficiências ---------- */
+.prof-bloco{ margin-top:14px; }
+.prof-bloco h3{
+  font-size:11px; color:var(--text-dim); text-transform:uppercase;
+  letter-spacing:1.5px; margin:0 0 8px; font-weight:600;
+}
+.prof-tags{ display:flex; flex-wrap:wrap; gap:6px; }
+.prof-tag{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:999px;
+  padding:4px 12px;
+  font-size:12px;
+  color:var(--text);
+}
+
+/* ---------- Aba Magias (v2) ---------- */
+.mag-header{ display:flex; justify-content:space-between; align-items:center; gap:12px; margin-bottom:12px; }
+.mag-nivel-conj{
+  background:var(--surface-2); padding:8px 14px; border-radius:8px;
+  display:flex; flex-direction:column; gap:2px;
+}
+.mag-nivel-conj span{ font-size:10px; color:var(--text-dim); letter-spacing:1px; text-transform:uppercase; }
+.mag-nivel-conj strong{ font-size:20px; }
+.btn-toggle-magias{
+  background:var(--surface-2); border:1px solid var(--border); color:var(--text);
+  border-radius:8px; padding:8px 12px; font-size:12px; font-weight:600;
+}
+.btn-toggle-magias:active{ background:var(--surface-3); }
+
+.classe-mag-bloco{
+  margin-top:16px; padding:12px;
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:var(--raio);
+}
+.classe-mag-topo{
+  display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;
+}
+.classe-mag-topo h3{ font-size:15px; margin:0; color:var(--text); letter-spacing:.3px; }
+.classe-mag-meta{ font-size:11px; color:var(--text-dim); }
+
+.mag-sub-bloco{ margin-top:12px; padding-top:12px; border-top:1px solid var(--border-soft); }
+.mag-sub-bloco:first-of-type{ border-top:0; padding-top:0; }
+.mag-sub-topo{ display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; }
+.mag-sub-topo h4{ font-size:12px; margin:0; color:var(--text-dim); text-transform:uppercase; letter-spacing:1px; }
+
+.mag-contador{
+  font-size:11px; padding:2px 8px; border-radius:999px;
+  background:var(--surface-3); color:var(--text-dim); font-weight:600;
+}
+.mag-contador.completo{ background:rgba(76,175,80,.15); color:var(--ok); }
+.mag-contador.excesso{ background:rgba(229,57,53,.15); color:var(--danger); }
+
+.mag-cir-titulo{
+  font-size:11px; color:var(--accent-2); margin:10px 0 6px;
+  letter-spacing:1px; text-transform:uppercase; font-weight:600;
+}
+
+/* Chips de magias escolhidas */
+.magia-chip-list{ display:flex; flex-wrap:wrap; gap:6px; }
+.magia-chip{
+  background:var(--surface-2); border:1px solid var(--border);
+  border-radius:999px; padding:5px 6px 5px 12px;
+  font-size:12px; color:var(--text);
+  display:inline-flex; align-items:center; gap:6px;
+}
+.magia-chip button{
+  background:none; border:0; color:var(--text-dim);
+  font-size:12px; padding:2px 6px; cursor:pointer; line-height:1;
+}
+.magia-chip button:active{ color:var(--danger); }
+
+/* Lista expandida (adicionar) */
+.mag-lista-exp{ display:flex; flex-direction:column; gap:4px; }
+.magia-add-row{
+  display:flex; align-items:center; justify-content:space-between; gap:8px;
+  background:var(--surface-2); border:1px solid var(--border-soft);
+  border-radius:8px; padding:8px 10px; font-size:13px;
+}
+.magia-add-row.disabled{ opacity:.55; }
+.magia-add-row .magia-nome{ flex:1; }
+
+.btn-add-mini{
+  background:var(--accent); color:#fff; border:0; border-radius:6px;
+  width:26px; height:26px; font-size:15px; line-height:1; font-weight:700;
+  display:grid; place-items:center; cursor:pointer; padding:0;
+}
+.btn-add-mini.added{ background:var(--ok); }
+.btn-add-mini.alt{ background:var(--surface-3); color:var(--text-dim); font-size:13px; }
+.btn-add-mini:active{ filter:brightness(1.2); }
+
+/* ---------- Aba Magias (v3) ---------- */
+.mag-header{ display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; }
+.mag-nivel-conj{
+  background:var(--surface-2); padding:8px 14px; border-radius:8px;
+  display:flex; flex-direction:column; gap:2px; flex:1;
+}
+.mag-nivel-conj span{ font-size:10px; color:var(--text-dim); letter-spacing:1px; text-transform:uppercase; }
+.mag-nivel-conj strong{ font-size:20px; }
+
+.classe-mag-bloco{
+  margin-top:16px; padding:12px;
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:var(--raio);
+}
+.classe-mag-topo{
+  display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;
+}
+.classe-mag-topo h3{ font-size:16px; margin:0; color:var(--text); }
+.classe-mag-meta{ font-size:11px; color:var(--text-dim); }
+
+.mag-sub-bloco{ margin-top:14px; padding-top:14px; border-top:1px solid var(--border-soft); }
+.mag-sub-bloco:first-of-type{ border-top:0; padding-top:0; }
+.mag-sub-topo{ display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; }
+.mag-sub-topo h4{ font-size:12px; margin:0; color:var(--text-dim); text-transform:uppercase; letter-spacing:1px; }
+
+.mag-contador{
+  font-size:11px; padding:2px 8px; border-radius:999px;
+  background:var(--surface-3); color:var(--text-dim); font-weight:600;
+}
+.mag-contador.completo{ background:rgba(76,175,80,.15); color:var(--ok); }
+.mag-contador.excesso{ background:rgba(229,57,53,.15); color:var(--danger); }
+
+/* Blocos de Nível (Truques, 1º Círculo, etc) */
+.mag-nivel-bloco{
+  background:var(--surface-2); border:1px solid var(--border);
+  border-radius:8px; padding:10px; margin-bottom:10px;
+}
+.mag-nivel-topo{
+  display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;
+}
+.mag-nivel-titulo{
+  font-size:12px; color:var(--accent-2); font-weight:600; letter-spacing:.5px;
+}
+
+/* Chips de magias escolhidas */
+.magia-chip-list{ display:flex; flex-wrap:wrap; gap:6px; }
+.magia-chip{
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:999px; padding:4px 6px 4px 10px;
+  font-size:12px; color:var(--text);
+  display:inline-flex; align-items:center; gap:6px;
+}
+.magia-chip button{
+  background:none; border:0; color:var(--text-dim);
+  font-size:12px; padding:2px 6px; cursor:pointer; line-height:1;
+}
+.magia-chip button:active{ color:var(--danger); }
+
+/* Botão de toggle abaixo das magias */
+.btn-toggle-nivel{
+  width:100%; margin-top:8px; padding:8px;
+  background:transparent; border:1px dashed var(--border); color:var(--text-dim);
+  border-radius:6px; font-size:11px; font-weight:600;
+}
+.btn-toggle-nivel:active{ background:var(--surface-3); }
+
+/* Lista expandida (adicionar) */
+.mag-lista-exp{ display:flex; flex-direction:column; gap:4px; margin-top:8px; }
+.magia-add-row{
+  display:flex; align-items:center; justify-content:space-between; gap:8px;
+  background:var(--surface); border:1px solid var(--border-soft);
+  border-radius:6px; padding:6px 10px; font-size:13px;
+}
+.magia-add-row .magia-nome{ flex:1; }
+
+.btn-add-mini{
+  background:var(--accent); color:#fff; border:0; border-radius:6px;
+  width:24px; height:24px; font-size:14px; line-height:1; font-weight:700;
+  display:grid; place-items:center; cursor:pointer; padding:0;
+  flex-shrink:0;
+}
+.btn-add-mini.added{ background:var(--ok); }
+.btn-add-mini:active{ filter:brightness(1.2); }
+
+/* ---------- Estilos para Magias Selecionadas ---------- */
+.magia-selecionada { 
+  margin-bottom: 6px; 
+}
+.magia-selecionada.magia-sub { 
+  border-left: 3px solid var(--warn); 
+}
+.btn-rem-magia {
+  position: absolute; right: 0; top: 0;
+  background: transparent; border: 0; color: var(--text-dim);
+  font-size: 14px; padding: 4px; cursor: pointer;
+  transition: color .15s;
+}
+.btn-rem-magia:active { 
+  color: var(--danger); 
+}
+
+/* ---------- Catálogo e Custom Item (Inventário) ---------- */
+.custom-item-form {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px;
+  margin-top: 12px;
+}
+.custom-item-form h3 {
+  font-size: 12px;
+  color: var(--accent-2);
+  margin: 0 0 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.custom-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.custom-item-form input,
+.custom-item-form select,
+.custom-item-form textarea {
+  width: 100%;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: 6px;
+  padding: 8px;
+  font-size: 13px;
+  font-family: inherit;
+}
+.custom-item-form textarea {
+  resize: vertical;
+}
+
+.catalogo-section {
+  border-top: 1px dashed var(--border);
+  padding-top: 12px;
+}
+.catalogo-section .busca-cat {
+  width: 100%;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+.catalogo-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: 480px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+.catalogo-item-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: var(--surface);
+  border: 1px solid var(--border-soft);
+  border-radius: 8px;
+  padding: 10px 12px;
+}
+.catalogo-info {
+  flex: 1;
+  min-width: 0;
+}
+.catalogo-info strong {
+  display: block;
+  font-size: 14px;
+}
+.catalogo-info small {
+  display: block;
+  font-size: 11px;
+  color: var(--text-dim);
+  margin-top: 2px;
+}
+.catalogo-notas {
+  font-size: 11px;
+  color: var(--text-faint);
+  font-style: italic;
+  margin-top: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ---------- Tags de Raridade (Inventário) ---------- */
+.raridade-tag {
+  display: inline-block;
+  font-size: 9px;
+  padding: 1px 6px;
+  border-radius: 4px;
+  margin-left: 6px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  vertical-align: middle;
+}
+.raridade-comum { background: rgba(200, 200, 200, 0.15); color: #ccc; }
+.raridade-incomum { background: rgba(76, 175, 80, 0.15); color: #4caf50; }
+.raridade-raro { background: rgba(33, 150, 243, 0.15); color: #2196f3; }
+.raridade-muito-raro { background: rgba(156, 39, 176, 0.15); color: #ce93d8; }
+.raridade-lendário, .raridade-lendario { background: rgba(255, 152, 0, 0.15); color: #ff9800; }
+.raridade-artefato { background: rgba(229, 57, 53, 0.15); color: #e53935; }
+
+/* ---------- Botões de Ação do Item (Inventário) ---------- */
+.item-acoes {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+.btn-acao-item {
+  background: var(--surface-3);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  width: 28px;
+  height: 28px;
+  font-size: 14px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  padding: 0;
+  transition: all .15s;
+}
+.btn-acao-item:active { transform: scale(.95); }
+.btn-equipar.ativo { background: rgba(76, 175, 80, .2); border-color: var(--ok); }
+.btn-sintonizar.ativo { background: rgba(255, 179, 0, .2); border-color: var(--warn); }
+
+/* ---------- Ações do Combate ---------- */
+.atk-acoes {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+.btn-move {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.btn-move:disabled { opacity: 0.3; cursor: not-allowed; }
+.btn-move:active:not(:disabled) { background: var(--surface-3); }
+
+/* ---------- Botão de Adicionar ao Combate (Magias) ---------- */
+.btn-add-combate {
+  background: transparent;
+  border: 0;
+  font-size: 16px;
+  cursor: pointer;
+  color: var(--text-dim);
+  padding: 4px;
+  transition: transform 0.1s;
+}
+.btn-add-combate:hover { color: var(--accent-2); }
+.btn-add-combate:active { transform: scale(0.9); }
+
+/* ---------- Escolha de Atributo em Armas (Combate) ---------- */
+.atk-escolha-atr {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: var(--text-dim);
+  margin-bottom: 8px;
+  background: var(--surface-2);
+  padding: 4px 8px;
+  border-radius: 6px;
+  border: 1px solid var(--border-soft);
+}
+
+.btn-atr {
+  background: var(--surface-3);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: 4px;
+  padding: 3px 8px;
+  font-size: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.btn-atr.ativo {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.btn-atr:active {
+  transform: scale(0.95);
+}
+
+/* ---------- Descrição de Magias no Combate ---------- */
+.card-ataque .magia-det {
+  font-size: 12px;
+  color: var(--text-dim);
+  line-height: 1.5;
+}
+
+.card-ataque .magia-det p {
+  margin: 0 0 6px;
+}
+
+.card-ataque .magia-det b {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.card-ataque .magia-up {
+  font-style: italic;
+  color: var(--warn);
+  margin-top: 8px;
+  font-size: 11px;
+}
