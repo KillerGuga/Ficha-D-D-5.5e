@@ -2,7 +2,7 @@
   "id": "/fichas-dnd/",
   "name": "Fichas D&D 5.5e",
   "short_name": "D&D 5.5e",
-  "start_url": "/fichas-dnd/index.html",
+  "start_url": "/Ficha-DnD/index.html?app=dnd",
   "scope": "/fichas-dnd/", 
   "display": "standalone",
   "orientation": "portrait",
