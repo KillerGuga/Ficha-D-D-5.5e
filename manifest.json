@@ -1,9 +1,9 @@
 {
-  "id": "/fichas-dnd/",
+  "id": "/Ficha-DnD/",
   "name": "Fichas D&D 5.5e",
   "short_name": "D&D 5.5e",
-  "start_url": "/Ficha-DnD/index.html?app=dnd",
-  "scope": "/fichas-dnd/", 
+  "start_url": "./index.html?app=dnd",
+  "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#1a1a1a",
